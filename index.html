@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            text-align: center;
+            color: #333;
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #ff4b5c;
+            margin-top: 50px;
+        }
+        .heart {
+            font-size: 80px;
+            color: #ff4b5c;
+            animation: heartBeat 1s infinite;
+        }
+        .btn-container {
+            margin-top: 50px;
+        }
+        .btn {
+            background-color: #ff4b5c;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: inline-block;
+            margin: 10px;
+        }
+        .btn:hover {
+            background-color: #ff2a3e;
+        }
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%; /* Adjust width to 90% of the screen */
+            max-width: 600px; /* Add a max-width to prevent it from becoming too wide */
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #333;
+            padding: 30px;
+            border-radius: 10px;
+            display: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-image: url('https://i.pinimg.com/originals/58/fe/9d/58fe9d1d672a4ed7d80f30f98a4251ba.jpg'); /* Heart background */
+            background-size: cover;
+            margin: 10px; /* Add margin to the popup */
+        }
+        .popup h2 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #ff4b5c;
+        }
+        .popup button {
+            background-color: #ff4b5c;
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0; /* Add margin between buttons */
+        }
+        .popup button:hover {
+            background-color: #ff2a3e;
+        }
+        .confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+        }
+        .confetti div {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #ff4b5c;
+            animation: confettiFall 3s infinite;
+        }
+        @keyframes confettiFall {
+            0% { transform: translateY(0) rotate(0); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        @media screen and (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            .btn {
+                padding: 12px 25px;
+                font-size: 1.1em;
+            }
+            .popup h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="mainTitle">Will You Be My Valentine?</h1>
+    <div class="heart">❤️</div>
+    
+    <div class="btn-container">
+        <button class="btn" id="clickMeButton" onclick="showPopup()">Click Me!</button>
+    </div>
+
+    <div id="popup" class="popup">
+        <h2>Just like in every K-drama... you’re my happy ending!</h2>
+        <p>So... will you be my Valentine?</p>
+        <button onclick="acceptValentine()">Yes, I will!</button>
+        <button onclick="declineValentine()" id="declineBtn">No, sorry!</button>
+    </div>
+
+    <audio id="kpopSong" autoplay loop>
+        <source src="romantic-song.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div id="hugContainer" style="display:none;">
+        <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExODAwY2dhcjdqZ2o2M213N2R4dXpxdmdkbjkyY3hjcHUyaXMzbDR3ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/1JmGiBtqTuehfYxuy9/giphy.gif" alt="Hugging GIF" style="width: 200px; height: 200px;">
+        <h2>Yay! You're my Valentine! ❤️</h2>
+        <button class="btn" onclick="sendWhatsAppConfirmation()">Send Confirmation</button>
+    </div>
+
+    <script>
+        let hasClickedNo = false;
+
+        function showPopup() {
+            document.getElementById("popup").style.display = "block";
+            document.getElementById("clickMeButton").style.display = "none";
+        }
+
+        function acceptValentine() {
+            // Change the title
+            document.getElementById("mainTitle").style.display = "none";  // Hide the original title
+            document.getElementById("mainTitle").innerText = "Yay! You're my Valentine! ❤️";
+
+            // Show Confetti animation
+            createConfetti();
+
+            // Hide other content
+            document.getElementById("popup").style.display = "none";
+
+            // Show hugging GIF and message
+            document.getElementById("hugContainer").style.display = "block";
+        }
+
+        function declineValentine() {
+            if (!hasClickedNo) {
+                // Make the "No" button move randomly but not far from the popup
+                const declineBtn = document.getElementById("declineBtn");
+                moveButtonRandomly(declineBtn);
+                hasClickedNo = true;
+            } else {
+                // Move the "No" button again the next time it's clicked
+                const declineBtn = document.getElementById("declineBtn");
+                moveButtonRandomly(declineBtn);
+            }
+        }
+
+        // Function to create confetti animation
+        function createConfetti() {
+            const confettiContainer = document.createElement('div');
+            confettiContainer.classList.add('confetti');
+            document.body.appendChild(confettiContainer);
+
+            for (let i = 0; i < 100; i++) {
+                const confettiPiece = document.createElement('div');
+                confettiPiece.style.left = `${Math.random() * 100}vw`;
+                confettiPiece.style.animationDuration = `${Math.random() * 2 + 2}s`;
+                confettiContainer.appendChild(confettiPiece);
+            }
+        }
+
+        // Function to move the button randomly but within a small area
+        function moveButtonRandomly(button) {
+            const popup = document.getElementById("popup");
+            const popupRect = popup.getBoundingClientRect();
+            const maxX = popupRect.width * 0.8; // 80% of popup width
+            const maxY = popupRect.height * 0.8; // 80% of popup height
+
+            function randomPosition() {
+                const randomX = Math.random() * maxX;
+                const randomY = Math.random() * maxY;
+                button.style.position = 'absolute';
+                button.style.left = `${randomX + popupRect.left}px`;
+                button.style.top = `${randomY + popupRect.top}px`;
+            }
+
+            randomPosition();
+        }
+
+        function sendWhatsAppConfirmation() {
+            const message = "Yes, I'll Be Your Valentine ❤️";
+            const phoneNumber = "+919653484711";
+            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(url, "_blank");
+        }
+    </script>
+
+</body>
+</html>
