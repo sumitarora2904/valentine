@@ -14,6 +14,8 @@
             height: 100vh;
             overflow: hidden;
             margin: 0;
+            background-image: url('https://i.pinimg.com/originals/58/fe/9d/58fe9d1d672a4ed7d80f30f98a4251ba.jpg'); /* Heart background */
+            background-size: cover;
             padding: 0;
         }
         h1 {
@@ -57,7 +59,6 @@
             border-radius: 10px;
             display: none;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            background-image: url('https://i.pinimg.com/originals/58/fe/9d/58fe9d1d672a4ed7d80f30f98a4251ba.jpg'); /* Heart background */
             background-size: cover;
             margin: 10px; /* Add margin to the popup */
         }
@@ -132,7 +133,8 @@
         <button onclick="acceptValentine()">Yes, I will!</button>
         <button onclick="declineValentine()" id="declineBtn">No, sorry!</button>
     </div>
-
+<iframe src="romantic-song.mp3" allow="autoplay" style="display:none" id="iframeAudio">
+</iframe> 
     <audio id="kpopSong" autoplay loop>
         <source src="romantic-song.mp3" type="audio/mp3">
         Your browser does not support the audio element.
