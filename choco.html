@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chocolate Day Wishes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #fce4ec;
+            font-family: 'Poppins', sans-serif;
+            color: #3d1d3f;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            text-align: center;
+            background: #ff69b4;
+            padding: 20px;
+            font-size: 2em;
+            color: white;
+        }
+
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .message {
+            font-size: 1.5em;
+            margin: 20px;
+            color: #5a1a56;
+        }
+
+        .chocolate {
+            font-size: 2em;
+            color: #8b4513;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .chocolate:hover {
+            transform: scale(1.2);
+            color: #d2691e;
+        }
+
+        .btn {
+            background-color: #ff1493;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
+        }
+
+        .btn:hover {
+            background-color: #ff69b4;
+        }
+
+        .kdrama-theme {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .kdrama-theme img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .heart-animation {
+            font-size: 2em;
+            color: #ff1493;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0% {
+                transform: scale(1);
+            }
+            25% {
+                transform: scale(1.2);
+            }
+            50% {
+                transform: scale(1);
+            }
+            75% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Happy Chocolate Day, My Love! 💕
+    </header>
+
+    <div class="content">
+        <div class="kdrama-theme">
+            <!-- Animated Cute GIF -->
+            <img src="https://media.giphy.com/media/xT0BKlL47vj6JlfoOO/giphy.gif" alt="Cute Heart Animation">
+            <div class="message">
+                To the love of my life, <br>
+                You are sweeter than chocolate and as beautiful as the brightest stars in a K-drama. 🍫✨ <br>
+                I am so lucky to have you by my side, today and forever. 💖
+            </div>
+
+            <div class="chocolate" onclick="showChocolateMessage()">🍫</div>
+            
+            <div class="heart-animation">❤️</div>
+
+            <button class="btn" onclick="changeMessage()">Click for a Sweet Surprise!</button>
+        </div>
+    </div>
+
+    <script>
+        function showChocolateMessage() {
+            alert("You are my chocolate in this sweet love story! 😘🍫");
+        }
+
+        function changeMessage() {
+            const messages = [
+                "You light up my life just like the stars in my favorite K-drama. ✨",
+                "Our love is like a perfect K-drama ending, full of sweetness and warmth. 💖",
+                "With you, every day feels like a scene from my favorite love story. 😍",
+                "I love you more than words in a K-drama script can express! 💌"
+            ];
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            document.querySelector('.message').innerText = randomMessage;
+        }
+    </script>
+</body>
+</html>
