@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>😘Happy Kiss Day😘</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fce4ec;
+      color: #333;
+      text-align: center;
+      padding: 20px;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    h1 {
+      color: #ff3366;
+      font-size: 3em;
+      margin-bottom: 20px;
+      animation: fadeIn 1.5s ease-out;
+    }
+
+    .kiss-button {
+      background-color: #ff3366;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      cursor: pointer;
+      margin: 10px;
+      border-radius: 5px;
+      transition: transform 0.3s ease;
+      animation: bounceIn 0.6s ease-out;
+    }
+
+    .kiss-button:hover {
+      background-color: #e6005c;
+      transform: scale(1.1);
+    }
+
+    .kiss-display {
+      font-size: 2em;
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s forwards;
+    }
+
+    .kiss {
+      font-size: 4em;
+    }
+
+    /* Animation for fade-in text */
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Animation for button bounce effect */
+    @keyframes bounceIn {
+      0% { transform: scale(0.5); }
+      60% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    /* Animation for kiss message fade-in */
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Happy Kiss Day, My Love! 💋</h1>
+  <p>Choose your kiss, and I'll send it to you! 😘</p>
+
+  <button class="kiss-button" onclick="showKiss('forehead')">Soft kiss on the forehead</button>
+  <button class="kiss-button" onclick="showKiss('cheek')">Playful kiss on your cheek</button>
+  <button class="kiss-button" onclick="showKiss('passionate')">Deep, passionate kiss</button>
+  <button class="kiss-button" onclick="showKiss('hand')">Sweet, loving kiss on your hand</button>
+
+  <div id="kiss-display" class="kiss-display"></div>
+
+  <script>
+    function showKiss(kissType) {
+      const kissDisplay = document.getElementById("kiss-display");
+      kissDisplay.style.opacity = 0;  // Reset opacity before new animation
+
+      // Trigger animation reset
+      kissDisplay.offsetHeight; // This forces a reflow, necessary for resetting animations
+
+      if (kissType === 'forehead') {
+        kissDisplay.innerHTML = '<span class="kiss">😘</span> A soft kiss on your forehead, my love! 💖';
+      } else if (kissType === 'cheek') {
+        kissDisplay.innerHTML = '<span class="kiss">😚</span> A playful kiss on your cheek! 💋';
+      } else if (kissType === 'passionate') {
+        kissDisplay.innerHTML = '<span class="kiss">💋</span> A deep, passionate kiss just for you! 😘';
+      } else if (kissType === 'hand') {
+        kissDisplay.innerHTML = '<span class="kiss">😗</span> A sweet, loving kiss on your hand. Forever yours! 💕';
+      }
+
+      // Trigger animation
+      setTimeout(() => {
+        kissDisplay.style.opacity = 1;
+        kissDisplay.style.animation = 'fadeInUp 1s forwards';
+      }, 100);  // Delay slightly to ensure reset before animation starts
+    }
+  </script>
+
+</body>
+</html>
